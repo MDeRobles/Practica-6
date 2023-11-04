@@ -8,6 +8,10 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'login', // Esta es la página que quieres establecer como página de inicio
+        loadChildren: () => import('../login/login.module').then(m => m.LoginPageModule)
+      },
+      {
         path: 'tab1',
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
@@ -21,17 +25,20 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: 'login', // Redirige a 'login'
         pathMatch: 'full'
       }
     ]
   },
+
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: 'login', // Redirige a 'login'
     pathMatch: 'full'
   }
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
